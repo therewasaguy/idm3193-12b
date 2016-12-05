@@ -1,34 +1,43 @@
-console.log('hello');
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component';
+import BlogPost from './components/blogpost';
 
 class App extends React.Component {
     constructor() {
-        super();
-
-        this.state = {
-            rating: 1
-        };
+      super();
+      this.state = {
+        posts: window.posts || []
+      }
     }
-
-    onStarClick(nextValue, prevValue, name) {
-        this.setState({rating: nextValue});
+    updateStarRating(index, rating) {
+      var newPosts = this.state.posts;
+      console.log(index);
+      newPosts[index].rating = rating;
+      this.setState({
+        posts: newPosts
+      });
+      
+      // update API here
     }
-
     render() {
-//        const { rating } = this.state;
-      var rating = this.state.rating;
-      return (                
-            <div>
-                <h2>Rating from state: {rating}</h2>
-                <StarRatingComponent 
-                    name="rate1" 
-                    starCount={10}
-                    value={rating}
-                    onStarClick={this.onStarClick.bind(this)}
+        // use map => function to preserve "this"
+        var blogPosts = this.state.posts.map((post, index) => {
+           return <BlogPost
+                  heading={this.state.posts[index].heading}
+                  body={this.state.posts[index].body}
+                  rating={this.state.posts[index].rating}
+                  id={this.state.posts[index]._id}
+                  key={index}
+                  index={index}
+                  updateStarRating={this.updateStarRating.bind(this)}
                 />
+        });
+
+        return (                
+            <div>
+                <h2>Blog Posts</h2>
+                {blogPosts}
             </div>
         );
     }
