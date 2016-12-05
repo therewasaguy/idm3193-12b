@@ -1,9 +1,10 @@
 {
-  "name": "week12b-scaffold",
+  "name": "wk12b",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www & webpack -w"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
@@ -11,9 +12,13 @@
     "debug": "~2.2.0",
     "express": "~4.14.0",
     "hbs": "~4.0.1",
+    "material-ui": "^0.16.4",
+    "mongoose": "^4.7.1",
     "morgan": "~1.7.0",
+    "node-sass-middleware": "0.9.8",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-star-rating": "^1.4.2",
     "react-star-rating-component": "^1.2.2",
     "serve-favicon": "~2.3.0"
   },
